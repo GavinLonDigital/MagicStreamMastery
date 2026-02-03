@@ -68,7 +68,7 @@ services:
       -  db
     working_dir: /app
     volumes:
-      ./seed:/seed-data
+      - ./seed:/seed-data
     environment:
       MONGODB_URI: mongodb://mongo:27017/magic-stream-movies
     command: ["node", "/seed-data/seed.js"]
