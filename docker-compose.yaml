@@ -12,8 +12,8 @@ services:
      
     restart: always
   api:
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     #image: gavinlon/magic-stream-api:${IMAGE_TAG:-latest}
     image: gavinlon/magic-stream-api-prod:${IMAGE_TAG:-latest}
     container_name: magic-stream-api-prod
