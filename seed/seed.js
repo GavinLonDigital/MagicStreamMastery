@@ -1,3 +1,7 @@
+import fs from 'fs/promises';
+
+
+
 print("🚀 Checking MongoDB for existing data...");
 
 const db = connect("mongodb://db:27017/magic-stream-movies");
@@ -16,8 +20,8 @@ if (hasData) {
 
 print("📌 Seeding initial database data...");
 
-const data3 = fs.readFileSync('/seed-data/users.json', 'utf8');
-
+//const data3 = fs.readFileSync('/seed-data/users.json', 'utf8');
+const data3 = JSON.parse(await fs.readFile('/seed-data/users.json', 'utf-8'));
 // const jsonUserData = [
 //     {
 //         user_id: "68385b9981097c6b4042dab4",
@@ -43,19 +47,21 @@ const data3 = fs.readFileSync('/seed-data/users.json', 'utf8');
 //     }
 // ]
 
-db.users.insertMany(JSON.parse(data3));
+db.users.insertMany(data3);
 //db.users.insertMany(jsonUserData);
 
- const data1 = fs.readFileSync('/seed-data/movies.json', 'utf8');
+// const data1 = fs.readFileSync('/seed-data/movies.json', 'utf8');
+const data1 = JSON.parse(await fs.readFile('/seed-data/users.json', 'utf-8'));
+db.movies.insertMany(data1);
 
-db.movies.insertMany(JSON.parse(data1));
+//const data2 = fs.readFileSync('/seed-data/genres.json', 'utf8');
+const data2 = JSON.parse(await fs.readFile('/seed-data/users.json', 'utf-8'));
 
-const data2 = fs.readFileSync('/seed-data/genres.json', 'utf8');
+db.genres.insertMany(data2);
 
-db.genres.insertMany(JSON.parse(data2));
+//const data4 = fs.readFileSync('/seed-data/rankings.json', 'utf8');
+const data4 = JSON.parse(await fs.readFile('/seed-data/users.json', 'utf-8'));
 
-const data4 = fs.readFileSync('/seed-data/rankings.json', 'utf8');
-
-db.rankings.insertMany(JSON.parse(data4));
+db.rankings.insertMany(data4);
 
 print("🎉 Seeding complete. Database is ready!");
