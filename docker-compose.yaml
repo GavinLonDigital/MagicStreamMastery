@@ -50,19 +50,29 @@ services:
       interval: 5s
       timeout: 5s
       retries: 4
-    
-  seed:
-    image: mongo:latest
-    container_name: seed_mongo
-    depends_on:
-      db:
-        condition: service_healthy
-    volumes:
-      - ./seed:/seed-data
-    command: >
-      mongosh mongodb://db:27017/magic-stream-movies /seed-data/seed.js
-    restart: "no"    # ← runs once, does not restart after completion
+ # seed:
+  #   image: mongo:latest
+  #   container_name: seed_mongo
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   volumes:
+  #     - ./seed:/seed-data
+  #   command: >
+  #     mongosh mongodb://db:27017/magic-stream-movies /seed-data/seed.js
+  #   restart: "no"    # ← runs once, does not restart after completion
 
+  seed_mongo:
+    image: node:20-alpine
+    depends_on:
+      -  db
+    working_dir: /app
+    volumes:
+      ./seed:/seed-data
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/magic-stream-movies
+    command: ["node", "/seed-data/seed.js"]
 
 volumes:
   movies:
+
