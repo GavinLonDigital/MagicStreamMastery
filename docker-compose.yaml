@@ -30,7 +30,8 @@ services:
         The response should be a single word and should not contain any other text.
         The response should be based on the following review.
       RECOMMENDED_MOVIE_LIMIT: "5"
-      MONGODB_URI: "mongodb://db:27017"
+      #MONGODB_URI: "mongodb://db:27017"
+      MONGODB_URI: MONGODB_URI=mongodb+srv://GavinL:Password1@magic-stream-movies.7qnqryr.mongodb.net/?appName=Magic-Stream-Movies
      # MONGODB_URI: "mongodb://host.docker.internal:27017"
       DATABASE_NAME: "magic-stream-movies"
       ALLOWED_ORIGINS: "${ALLOWED_ORIGINS}"
@@ -38,18 +39,18 @@ services:
     restart: always
 
 
-  db:
-    image: mongo:latest
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - movies:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 5s
-      timeout: 5s
-      retries: 4
+  # db:
+  #   image: mongo:latest
+  #   container_name: mongo
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - movies:/data/db
+  #   healthcheck:
+  #     test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 4
  # seed:
   #   image: mongo:latest
   #   container_name: seed_mongo
@@ -62,17 +63,17 @@ services:
   #     mongosh mongodb://db:27017/magic-stream-movies /seed-data/seed.js
   #   restart: "no"    # ← runs once, does not restart after completion
 
-  seed_mongo:
-    image: node:20-alpine
-    depends_on:
-      -  db
-    working_dir: /app
-    volumes:
-      - ./seed:/seed-data
-    environment:
-      MONGODB_URI: mongodb://mongo:27017/magic-stream-movies
-    command: ["node", "/seed-data/seed.js"]
+#   seed_mongo:
+#     image: node:20-alpine
+#     depends_on:
+#       -  db
+#     working_dir: /app
+#     volumes:
+#       - ./seed:/seed-data
+#     environment:
+#       MONGODB_URI: mongodb://mongo:27017/magic-stream-movies
+#     command: ["node", "/seed-data/seed.js"]
 
-volumes:
-  movies:
+# volumes:
+#   movies:
 
