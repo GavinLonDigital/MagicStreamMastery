@@ -1,0 +1,68 @@
+services:
+  web:
+    depends_on:
+      - api
+    image: gavinlon/magic-stream-web-prod:${IMAGE_TAG:-latest}
+    container_name: magic-stream-web-prod
+    ports:
+      - "8081:80"
+      
+    environment:
+      API_URL: "http://${API_HOST_IP}:8080"
+     
+    restart: always
+  api:
+    depends_on:
+      - db
+    #image: gavinlon/magic-stream-api:${IMAGE_TAG:-latest}
+    image: gavinlon/magic-stream-api-prod:${IMAGE_TAG:-latest}
+    container_name: magic-stream-api-prod
+    ports:
+      - "8080:8080"
+
+    environment:
+      PORT: "8080"
+      SECRET_KEY: "${SECRET_KEY}"
+      REFRESH_TOKEN_SECRET_KEY: "${REFRESH_TOKEN_SECRET_KEY}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      BASE_PROMPT_TEMPLATE: > 
+        Return a response using one of these words: {rankings}.
+        The response should be a single word and should not contain any other text.
+        The response should be based on the following review.
+      RECOMMENDED_MOVIE_LIMIT: "5"
+      MONGODB_URI: "mongodb://db:27017"
+     # MONGODB_URI: "mongodb://host.docker.internal:27017"
+      DATABASE_NAME: "magic-stream-movies"
+      ALLOWED_ORIGINS: "${ALLOWED_ORIGINS}"
+    
+    restart: always
+
+
+  db:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - movies:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 4
+    
+  seed:
+    image: mongo:latest
+    container_name: seed_mongo
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./seed:/seed-data
+    command: >
+      mongosh mongodb://db:27017/magic-stream-movies /seed-data/seed.js
+    restart: "no"    # ← runs once, does not restart after completion
+
+
+volumes:
+  movies:

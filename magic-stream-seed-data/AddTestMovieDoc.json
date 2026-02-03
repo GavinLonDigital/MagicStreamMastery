@@ -1,0 +1,21 @@
+    {
+        "imdb_id": "tt0102034",
+        "title": "Highlander 2: The Quickening",
+        "poster_path": "https://image.tmdb.org/t/p/original/gFPIgpwtnsiq6AG5HlgOzK1TNke.jpg",
+        "youtube_id": "pRgJVvoihCQ",
+        "genre": [
+            {
+                "genre_id": 6,
+                "genre_name": "Sci-fi"
+            },
+            {
+                "genre_id": 4,
+                "genre_name": "Fantasy"
+            }
+        ],
+        "admin_review": "",
+        "ranking": {
+            "ranking_value": 4,
+            "ranking_name": "bad"
+        }
+    }

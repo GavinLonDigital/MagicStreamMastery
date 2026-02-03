@@ -1,0 +1,88 @@
+[
+    {
+        "user_id": "68385b9981097c6b4042dab4",
+        "first_name": "Bob",
+        "last_name": "Jones",
+        "email": "bobjones@hotmail.com",
+        "password": "$2a$10$FAd/ArLwxQ3WbNE3XKbyveRHidTpW9g84hX2CPr0tWdGGerrP6.3K",
+        "role": "ADMIN",
+        "created_at": {
+            "$date": "2025-05-29T13:05:29.000Z"
+        },
+        "updated_at": {
+            "$date": "2025-05-29T13:06:51.000Z"
+        },
+        "token": "",
+        "refresh_token": "",
+        "favourite_genres": [
+            {
+                "genre_id": 1,
+                "genre_name": "Comedy"
+            },
+            {
+                "genre_id": 4,
+                "genre_name": "Fantasy"
+            }
+        ]
+    },
+    {
+        "user_id": "684535a8c3d7e6b4ac1c5203",
+        "first_name": "Sarah",
+        "last_name": "Smith",
+        "email": "sarahsmith@hotmail.com",
+        "password": "$2a$10$w0H8AI/xigWiq0hGsjyfqeWAR5d6oErWE4b7sz9uwCTKMwRIv49YW",
+        "role": "USER",
+        "created_at": {
+            "$date": "2025-06-08T07:03:04.865Z"
+        },
+        "updated_at": {
+            "$date": "2025-06-23T09:26:11.000Z"
+        },
+        "token": "",
+        "refresh_token": "",
+        "favourite_genres": [
+            {
+                "genre_id": 5,
+                "genre_name": "Thriller"
+            },
+            {
+                "genre_id": 6,
+                "genre_name": "Sci-fi"
+            },
+            {
+                "genre_id": 8,
+                "genre_name": "Mystery"
+            }
+        ]
+    },
+    {
+        "user_id": "68512bc5a29d3bfe81637e3f",
+        "first_name": "Ben",
+        "last_name": "Madison",
+        "email": "benmadison@hotmail.com",
+        "password": "$2a$10$0rCBUYy4ZlTzuxcf20XV1.s7UVTbtkXkARQmzb3vstja4uDnp.NS.",
+        "role": "USER",
+        "created_at": {
+            "$date": "2025-06-17T08:48:05.649Z"
+        },
+        "updated_at": {
+            "$date": "2025-06-17T08:48:05.649Z"
+        },
+        "token": "",
+        "refresh_token": "",
+        "favourite_genres": [
+            {
+                "genre_id": 1,
+                "genre_name": "Comedy"
+            },
+            {
+                "genre_id": 5,
+                "genre_name": "Thriller"
+            },
+            {
+                "genre_id": 6,
+                "genre_name": "Sci-Fi"
+            }
+        ]
+    }
+]

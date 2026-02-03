@@ -1,0 +1,23 @@
+{
+  "first_name": "Craig",
+  "last_name": "Denton",
+  "email": "craigdenton@hotmail.com",
+  "password": "Password1!",
+  "role": "USER",
+  "token": "",
+  "refresh_token": "",
+  "favourite_genres": [
+    {
+      "genre_id": 1,
+      "genre_name": "Comedy"
+    },
+    {
+      "genre_id": 5,
+      "genre_name": "Thriller"
+    },
+    {
+      "genre_id": 6,
+      "genre_name": "Sci-Fi"
+    }
+  ]
+}

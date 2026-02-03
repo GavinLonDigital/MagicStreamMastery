@@ -1,0 +1,26 @@
+[
+    {
+        "ranking_value": 999,
+        "ranking_name": "Not_Ranked"
+    },
+    {
+        "ranking_value": 1,
+        "ranking_name": "Excellent"
+    },
+    {
+        "ranking_value": 2,
+        "ranking_name": "Good"
+    },
+    {
+        "ranking_value": 3,
+        "ranking_name": "Okay"
+    },
+    {
+        "ranking_value": 4,
+        "ranking_name": "Bad"
+    },
+    {
+        "ranking_value": 5,
+        "ranking_name": "Terrible"
+    }
+]
