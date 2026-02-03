@@ -31,7 +31,7 @@ services:
         The response should be based on the following review.
       RECOMMENDED_MOVIE_LIMIT: "5"
       #MONGODB_URI: "mongodb://db:27017"
-      MONGODB_URI: MONGODB_URI=mongodb+srv://GavinL:Password1@magic-stream-movies.7qnqryr.mongodb.net/?appName=Magic-Stream-Movies
+      MONGODB_URI: mongodb+srv://GavinL:Password1@magic-stream-movies.7qnqryr.mongodb.net/?appName=Magic-Stream-Movies
      # MONGODB_URI: "mongodb://host.docker.internal:27017"
       DATABASE_NAME: "magic-stream-movies"
       ALLOWED_ORIGINS: "${ALLOWED_ORIGINS}"
