@@ -1,0 +1,56 @@
+name: Build, Push & Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+        
+      - name: Checkout repository
+        uses: actions/checkout@v4 
+        with: 
+          fetch-depth: 0
+          
+      - name: Show API context files
+        run: ls -la Server/MagicStreamServer || true
+
+      - name: Show Web context files
+        run: ls -la Client/magic-stream-client || true
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            gavinlon/magic-stream-api-prod
+            gavinlon/magic-stream-web-prod
+          tags: |
+            type=sha,format=short
+            type=raw,value=latest
+
+      - name: Build & push API image
+        uses: docker/build-push-action@v6
+        with:
+          context: Server/MagicStreamServer
+          file: ${{ github.workspace }}/Server/MagicStreamServer/Dockerfile.prod
+          push: true
+          tags: gavinlon/magic-stream-api-prod:${{ steps.meta.outputs.version }}
+
+      - name: Build & push Web image
+        uses: docker/build-push-action@v6
+        with:
+          context: Client/magic-stream-client
+          file: ${{ github.workspace }}/Client/magic-stream-client/Dockerfile.prod
+          push: true
+          tags: gavinlon/magic-stream-web-prod:${{ steps.meta.outputs.version }}
+
+
